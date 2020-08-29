@@ -1,0 +1,3 @@
+{
+  "mongoConnect": "mongodb+srv://admin123:rocker123@cluster0.y9xc6.mongodb.net/userDB?retryWrites=true&w=majority"
+}
