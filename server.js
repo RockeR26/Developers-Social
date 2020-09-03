@@ -6,10 +6,17 @@ const connectDB = require("./config/db");
 //connecting to DB
 connectDB();
 
+//adding body parser
+app.use(express.json({ extended: false }));
+
+// @route: GET /
+// @desc:SERVER HOME ROUTE
+// @acess:PUBLIC
 app.get("/", (req, res) => {
   res.send("Im Server");
 });
-//getting routes
+
+//routes of server
 app.use("/user", require("./routes/users"));
 app.use("/post", require("./routes/posts"));
 app.use("/profile", require("./routes/profiles"));
