@@ -64,24 +64,27 @@ router.post(
     } = req.body;
 
     //create or update a profile
-    const profileFields = {};
-    profileFields.user = req.user;
-    if (company) profileFields.company = company;
-    if (website) profileFields.website = website;
-    if (location) profileFields.location = location;
-    if (bio) profileFields.bio = bio;
-    if (status) profileFields.status = status;
-    if (githubUsername) profileFields.githubUsername = githubUsername;
-    if (skills)
-      profileFields.skills = skills.split(",").map((skill) => skill.trim());
-    profileFields.social = {};
-    if (facebook) profileFields.social.facebook = facebook;
-    if (twitter) profileFields.social.twitter = twitter;
-    if (youtube) profileFields.social.youtube = youtube;
-    if (linkedin) profileFields.social.linkedin = linkedin;
-    if (instagram) profileFields.social.instagram = instagram;
-
     try {
+      const profileFields = {};
+      profileFields.user = req.user;
+      if (company) profileFields.company = company;
+      if (website) profileFields.website = website;
+      if (location) profileFields.location = location;
+      if (bio) profileFields.bio = bio;
+      if (status) profileFields.status = status;
+      if (githubUsername) profileFields.githubUsername = githubUsername;
+      if (skills) {
+        profileFields.skills = String(skills)
+          .split(",")
+          .map((skill) => skill.trim());
+      }
+      profileFields.social = {};
+      if (facebook) profileFields.social.facebook = facebook;
+      if (twitter) profileFields.social.twitter = twitter;
+      if (youtube) profileFields.social.youtube = youtube;
+      if (linkedin) profileFields.social.linkedin = linkedin;
+      if (instagram) profileFields.social.instagram = instagram;
+
       let profile = await Profile.findOne({ user: req.user });
       if (profile) {
         //update
@@ -98,6 +101,7 @@ router.post(
       await profile.save();
       res.json(profile);
     } catch (err) {
+      console.error(err.message);
       res.status(500).json({ msg: "server error" });
     }
   }
