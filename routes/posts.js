@@ -94,7 +94,7 @@ router.put("/likes/:pid", authenticate, async (req, res) => {
       return res.status(400).json({ msg: "already liked" });
     post.likes.unshift({ user: req.user });
     await post.save();
-    res.json(post);
+    res.json(post.likes);
   } catch (error) {
     console.error(error.message);
     if (error.kind === "ObjectId")
@@ -120,7 +120,7 @@ router.put("/unlike/:pid", authenticate, async (req, res) => {
     );
     post.likes.splice(removeIndex, 1);
     await post.save();
-    res.json(post);
+    res.json(post.likes);
   } catch (error) {
     console.error(error.message);
     if (error.kind === "ObjectId")
@@ -132,7 +132,7 @@ router.put("/unlike/:pid", authenticate, async (req, res) => {
 // @route: POST /post/comment/:pid
 // @desc:add a comment on a post
 // @acess:Protected
-router.put(
+router.post(
   "/comment/:pid",
   [authenticate, [check("text", "text is required").not().isEmpty()]],
   async (req, res) => {
@@ -150,7 +150,7 @@ router.put(
       };
       post.comments.unshift(comment);
       await post.save();
-      res.json(post);
+      res.json(post.comments);
     } catch (error) {
       console.error(error.message);
       res.status(500).json({ msg: "server error" });
@@ -176,7 +176,7 @@ router.delete("/comment/:pid/:cid", authenticate, async (req, res) => {
     );
     post.comments.splice(removeIndex, 1);
     await post.save();
-    res.json(post);
+    res.json(post.comments);
   } catch (error) {
     console.error(error.message);
     if (error.kind === "ObjectId")

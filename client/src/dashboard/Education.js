@@ -19,12 +19,14 @@ const Education = ({ education, deleteEducation }) => {
             <Moment format="YYYY/MM/DD">{exp.to}</Moment>
           )}
         </td>
-        <button
-          onClick={() => deleteEducation(exp._id)}
-          className="btn btn-danger"
-        >
-          Delete
-        </button>
+        <td>
+          <button
+            onClick={() => deleteEducation(exp._id)}
+            className="btn btn-danger"
+          >
+            Delete
+          </button>
+        </td>
       </tr>
     );
   });

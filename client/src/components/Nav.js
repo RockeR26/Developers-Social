@@ -8,8 +8,14 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
+        <a href="/profiles">Developers</a>
+      </li>
+      <li>
+        <a href="/posts">Posts</a>
+      </li>
+      <li>
         <a href="/dashboard">
-          <i className="fas fa-user"></i>
+          <i className="fas fa-user"></i>{" "}
           <span className="hide-sm">Dashboard</span>
         </a>
       </li>
@@ -24,7 +30,7 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <a href="#!">Developers</a>
+        <a href="/profiles">Developers</a>
       </li>
       <li>
         <a href="/register">Register</a>
