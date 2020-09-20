@@ -1,0 +1,6 @@
+{
+  "mongoConnect": "mongodb+srv://admin123:rocker123@cluster0.y9xc6.mongodb.net/userDB?retryWrites=true&w=majority",
+  "secret": "Aquickbrownfoxjumpsoveralazydog*!",
+  "ClientId": "9798e040fe1c34cfdf42",
+  "ClientSecret": "25d2a3357b530ecec75aab4040939b2cc36b8c2a"
+}

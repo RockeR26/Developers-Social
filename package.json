@@ -9,7 +9,7 @@
     "client": "npm start --prefix client",
     "test": "npm start --prefix test",
     "dev": "concurrently \"npm run start\" \"npm run client\"",
-    "testing": "concurrently \"npm run server\" \"npm run test\""
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build ---prefix client"
   },
   "author": "sagnik choudhury",
   "license": "MIT",
